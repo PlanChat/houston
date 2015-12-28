@@ -60,7 +60,7 @@ module Houston
       json['aps']['sound'] = @sound if @sound
       json['aps']['category'] = @category if @category
       json['aps']['content-available'] = 1 if @content_available
-      json['aps']['url_args'] = @url_args if @url_args
+      json['aps']['url-args'] = @url_args if @url_args
       json
     end
 
