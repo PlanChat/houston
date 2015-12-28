@@ -29,7 +29,7 @@ module Houston
 
     MAXIMUM_PAYLOAD_SIZE = 2048
 
-    attr_accessor :token, :alert, :badge, :sound, :category, :content_available, :custom_data, :id, :expiry, :priority
+    attr_accessor :url_args, :token, :alert, :badge, :sound, :category, :content_available, :custom_data, :id, :expiry, :priority
     attr_reader :sent_at
     attr_writer :apns_error_code
 
@@ -39,6 +39,7 @@ module Houston
     def initialize(options = {})
       @token = options.delete(:token) || options.delete(:device)
       @alert = options.delete(:alert)
+      @url_args = options.delete(:url_args)
       @badge = options.delete(:badge)
       @sound = options.delete(:sound)
       @category = options.delete(:category)
@@ -59,7 +60,7 @@ module Houston
       json['aps']['sound'] = @sound if @sound
       json['aps']['category'] = @category if @category
       json['aps']['content-available'] = 1 if @content_available
-
+      json['aps']['url_args'] = @url_args if @url_args
       json
     end
 
